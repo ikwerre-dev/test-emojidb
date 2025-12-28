@@ -8,7 +8,7 @@
         "Unique": true
       },
       {
-        "Name": "username",
+        "Name": "name",
         "Type": 1,
         "Unique": false
       }

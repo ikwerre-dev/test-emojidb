@@ -16,20 +16,18 @@ app.get('/test', async (c) => {
   const dbopen = await db.open('prod.db', 'my-secret-key');
 
 
-  // const migrate = await db.migrate('users', [
-  //   { Name: 'id', Type: 0, Unique: true },
-  //   { Name: 'username', Type: 1, Unique: false } // New field
-  // ]);
+  const migrate = await db.migrate('users', [
+    { Name: 'id', Type: 0, Unique: true },
+    { Name: 'name', Type: 1, Unique: false } // New field
+  ]);
 
   // const dbinsert = await db.insert('users', { id: 1, username: 'Robinson Honour' });
   // await db.insert('users', { id: 2, username: 'Robinson Honour2' });
   // await db.insert('users', { id: 3, username: 'Robinson Honour3' });
-  const users = await db.query('users');
+  const users = await db.query('users', { id: 1 });
 
 
   console.log(connectdb)
-  console.log(dbopen)
-  // console.log(migrate)
   console.log(users)
 
 

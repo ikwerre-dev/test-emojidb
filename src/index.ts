@@ -1,0 +1,43 @@
+import { serve } from '@hono/node-server'
+import { Hono } from 'hono'
+import EmojiDB from '@ikwerre-dev/emojidb';
+const db = new EmojiDB();
+
+const app = new Hono()
+
+app.get('/', (c) => {
+  return c.text('Hello Hono!')
+})
+
+
+app.get('/test', async (c) => {
+
+  const connectdb = await db.connect();
+  const dbopen = await db.open('prod.db', 'my-secret-key');
+
+
+  const migrate = await db.migrate('users', [
+    { Name: 'id', Type: 0, Unique: true },
+    { Name: 'username', Type: 1, Unique: true } // New field
+  ]);
+
+  const dbinsert = await db.insert('users', { id: 1, username: 'Alice' });
+  const users = await db.query('users');
+
+
+  console.log(connectdb)
+  console.log(dbopen)
+  // console.log(migrate)
+  // console.log(dbinsert)
+  console.log(users)
+
+
+  return c.text('Testing!!')
+})
+
+serve({
+  fetch: app.fetch,
+  port: 3000
+}, (info) => {
+  console.log(`Server is running on http://localhost:${info.port}`)
+})

@@ -10,7 +10,7 @@
       {
         "Name": "username",
         "Type": 1,
-        "Unique": true
+        "Unique": false
       }
     ]
   }

@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@hono/node-server": "^1.19.6",
-    "@ikwerre-dev/emojidb": "^1.0.9",
+    "@ikwerre-dev/emojidb": "^1.1.0",
     "hono": "^4.11.3"
   },
   "devDependencies": {
